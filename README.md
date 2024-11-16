@@ -1,1 +1,0 @@
-# Property Price Prediction Project
