@@ -4,4 +4,6 @@ seaborn
 matplotlib
 requests
 beautifulsoup4
+scikit-learn
+dill
 -e .
