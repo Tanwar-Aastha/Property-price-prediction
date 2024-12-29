@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import seaborn as sns
 import plotly.express as px
 import pickle
 from wordcloud import WordCloud
@@ -61,3 +62,43 @@ else:
                   color='bedRoom',
                   title='Area Vs Price')
     st.plotly_chart(fig1, use_container_width=True)
+
+# Pie chart for BHK
+st.header('BHK Pie Chart')
+
+sector_options = new_df['sector'].unique().tolist()
+sector_options.insert(0,'overall')
+
+selected_sector = st.selectbox('Select Sector', sector_options)
+
+if selected_sector == 'overall':
+
+    fig2 = px.pie(new_df, names='bedRoom')
+
+    st.plotly_chart(fig2, use_container_width=True)
+else:
+
+    fig2 = px.pie(new_df[new_df['sector'] == selected_sector], names='bedRoom')
+
+    st.plotly_chart(fig2, use_container_width=True)
+
+
+# BHK Price Comparison
+st.header('Side by Side BHK price comparison')
+
+fig3 = px.box(new_df[new_df['bedRoom'] <= 4], x='bedRoom', y='price', 
+              title='BHK Price Range', labels={'bedRoom': 'Number of Bedrooms', 
+                                               'price': 'Price'})
+
+st.plotly_chart(fig3, use_container_width=True)
+
+
+st.header('Side by Side Distplot for property type')
+
+fig3 = plt.figure(figsize=(10, 4))
+sns.histplot(new_df[new_df['property_type'] == 'house']['price'], kde=True, alpha=0.5, label='Houses')
+sns.histplot(new_df[new_df['property_type'] == 'flat']['price'], kde=True, alpha=0.5, label='Flats')
+plt.ylabel('Density')
+plt.xlabel('Price')
+plt.legend()
+st.pyplot(fig3)
