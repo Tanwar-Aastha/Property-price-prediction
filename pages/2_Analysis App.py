@@ -30,13 +30,13 @@ fig = px.scatter_mapbox(group_df, lat="latitude", lon="longitude",
 
 st.plotly_chart(fig, use_container_width=True)
 
-# Features WorlCloud
+# Features WordCloud
 st.header("Features Wordcloud")
 
 plt.rcParams['font.family'] = 'Arial'
 wordcloud = WordCloud(width=800, 
                       height=800,
-                      background_color='white',
+                      background_color='black',
                       stopwords=set(['s']),
                       min_font_size=10).generate(feature_text)
 
