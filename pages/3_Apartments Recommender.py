@@ -38,9 +38,6 @@ def recommend_properties_with_scores(property_name, top_n=5):
     return recommendations_df
 
 
-# Test the recommender function using a property name
-recommend_properties_with_scores('DLF The Camellias')
-
 
 # recomending nearby locations within a selected radius
 st.title('Select Location and Radius')
